@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Untuk Kamu</title>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&family=Playfair+Display:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#1a1010;--m:#2d1f1a;--c:#3e2723;--e:#4e342e;--be:#d7ccc8;--gd:#bcaaa4;--am:#ffb74d;--cr:#efebe9}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--be);font-family:'Playfair Display',serif;height:100vh;width:100vw;overflow:hidden;display:flex;justify-content:center;align-items:center;user-select:none}
+.grain{position:fixed;top:0;left:0;w:100%;h:100%;pointer-events:none;z-index:999;opacity:.04;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter i='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65'/%3E%3C/filter%3E%3Crect w='100%25' h='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.vignette{position:fixed;top:0;left:0;w:100%;h:100%;background:radial-gradient(circle,transparent 30%,var(--bg) 95%);pointer-events:none;z-index:998}
+.dust{position:absolute;background:var(--be);border-radius:50%;opacity:.2;animation:ft 15s linear infinite}
+@keyframes ft{0%{transform:translateY(110vh)}20%{opacity:.3}100%{transform:translateY(-10vh)}}
+.hand{font-family:'Caveat',cursive;font-size:1.4rem}
+.nav{position:absolute;bottom:20px;left:50%;transform:translateX(-50%);display:flex;gap:30px;z-index:100}
+.arrow{width:45px;height:45px;border:1px solid var(--gd);bg:transparent;border-radius:50%;color:var(--gd);font-size:1.2rem;cursor:pointer;transition:.3s;display:flex;justify-content:center;align-items:center}
+.arrow:hover{background:var(--gd);color:var(--bg)}
+.arrow:disabled{opacity:.2;cursor:default}
+.box{position:relative;width:100%;height:100%}
+.slide{position:absolute;top:0;left:0;width:100%;height:100%;display:flex;flex-direction:column;justify-content:center;align-items:center;opacity:0;visibility:hidden;transition:all 1.5s ease;filter:blur(8px)brightness(.7)}
+.slide.active{opacity:1;visibility:visible;filter:blur(0)brightness(1)}
+/*S1*/
+.s1lamp{font-size:5rem;filter:drop-shadow(0 0 30px rgba(255,160,76,.3))}
+.s1vinyl{font-size:2.5rem;margin-top:-15px;opacity:.7}
+.s1frame{position:absolute;bottom:12%;left:10%;w:50px;h:70px;background:var(--c);border:2px solid var(--e);transform:rotate(-5deg)}
+.gift{font-size:4rem;cursor:pointer;transition:.3s;z-index:10}
+.gift:hover{transform:scale(1.1)}
+.blur{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);w:150px;h:170px;background:var(--cr);filter:blur(10px);opacity:0;z-index:-1;transition:all 2s;font-family:'Caveat';color:#3e2723}
+.s1txt{text-align:center;max-width:400px;padding:0 20px}
+.s1hid{margin-top:15px;opacity:0;transform:translateY(15px);transition:1s ease .5s;color:var(--gd)}
+/*S2*/
+.bg2{width:100%;height:100%;background:linear-gradient(135deg,var(--m),var(--c))}
+.photo{position:absolute;w:60px;h:60px;background:var(--cr);box-shadow:3px 3px 10px rgba(0,0,0,.5);transform:rotate(var(--r));display:flex;justify-content:center;align-items:center}
+.light{position:absolute;w:80px;h:2px;background:linear-gradient(90deg,transparent,var(--gd),transparent);opacity:.4}
+.note{position:absolute;w:80px;h:80px;background:var(--am);padding:8px;box-shadow:3px 3px 8px rgba(0,0,0,.4);font-family:'Caveat';font-size:.8rem;color:#3e2723;cursor:pointer;transition:.3s;transform:rotate(var(--r));display:flex;justify-content:center;align-items:center;text-align:center;z-index:10}
+.note:hover{transform:scale(1.15) rotate(0deg)!important;z-index:20}
+.puz{position:absolute;bottom:50px;display:flex;gap:8px;background:rgba(0,0,0,.4);padding:10px 15px;border-radius:20px;flex-wrap:wrap;justify-content:center}
+.pitem{padding:8px 14px;background:var(--cr);border-radius:15px;font-family:'Playfair Display';font-size:.7rem;cursor:pointer;transition:.3s;color:var(--bg)}
+.pitem:hover{background:var(--gd)}
+.pitem.dn{opacity:.4;text-decoration:line-through;background:var(--bg);color:var(--gd)}
+.msgpz{position:absolute;bottom:110px;opacity:0;transition:1s;font-family:'Caveat';color:var(--gd)}
+.qt{position:absolute;bottom:15px;right:20px;text-align:right;font-size:.7rem;font-style:italic;opacity:.6;max-width:170px}
+/*S3*/
+.night{width:100%;height:100%;background:linear-gradient(to bottom,#0d0908,#231815)}
+.rain{width:100%;height:100%;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' w='1' h='40'%3E%3Cline x1='0' y1='0' x2='0' y2='40' stroke='rgba(255,255,255,.06)'/%3E%3C/svg%3E");animation:rn .5s linear infinite}
+@keyframes rn{0%{background-position:0 0}100%{background-position:0 40px}}
+.train{position:absolute;bottom:14%;right:-200px;w:200px;h:60px;background:linear-gradient(90deg,transparent,#fff8e1,#fff,#fff8e1,transparent);filter:blur(6px);opacity:.4;animation:tr 8s infinite linear}
+@keyframes tr{0%{right:-200px}100%{right:120%}}
+.star{position:absolute;w:2px;h:2px;background:#fff;border-radius:50%;box-shadow:0 0 4px #fff;cursor:pointer;transition:.3s}
+.star:hover{transform:scale(2);opacity:1;box-shadow:0 0 8px var(--gd)}
+.fin{text-align:center;z-index:10;padding:20px;max-width:480px}
+.end{position:absolute;top:0;left:0;width:100%;height:100%;background:var(--bg);opacity:0;pointer-events:none;transition:opacity 3s ease;z-index:100;display:flex;justify-content:center;align-items:center;flex-direction:column}
+.btn{ margin-top:30px;padding:12px 28px;bg:transparent;border:1px solid var(--gd);color:var(--gd);font-family:'Playfair Display';letter-spacing:2px;cursor:pointer;transition:.5s}
+.btn:hover{background:var(--gd);color:var(--bg)}
+.hov{position:fixed;bottom:20px;right:20px;opacity:0;transition:1s;font-size:.8rem}
+@media(max-width:600px){.note{w:65px;h:65px;font-size:.7rem}}
+</style>
+</head>
+<body>
+<div class="grain"></div>
+<div class="vignette"></div>
+<div id="dust"></div>
+<div class="box">
+<div class="slide active" id="sl1">
+<h2 style="font-size:.8rem;letter-spacing:3px;opacity:.6;margin-bottom:25px">a little thing i left for you</h2>
+<div style="position:relative;text-align:center">
+<div class="s1lamp">🕯</div>
+<div class="s1vinyl">💿</div>
+<div class="s1frame"></div>
+</div>
+<div class="gift" onclick="buka()">🎀</div>
+<div class="blur" id="bp">kita</div>
+<div class="s1txt">
+<p class="hand">ini cuma hadiah kecil yang akhirnya berhasil aku selesaikan setelah terlalu lama disimpan sendiri.</p>
+<p class="hand" style="font-size:1.2rem;opacity:.8">mungkin sederhana, tapi isinya penuh hal-hal yang dulu ga pernah sempat aku ucapkan.</p>
+</div>
+<div class="s1hid" id="sh"><p>"some people become important quietly."</p></div>
+</div>
+<div class="slide" id="sl2">
+<div class="bg2" id="wall"></div>
+<h2 style="font-size:.8rem;letter-spacing:3px;opacity:.7;position:absolute;top:35px;z-index:15">things i noticed too late</h2>
+<div class="puz">
+<div class="pitem" onclick="k(this)">notif</div>
+<div class="pitem" onclick="k(this)">lagu</div>
+<div class="pitem" onclick="k(this)">hujan</div>
+<div class="pitem" onclick="k(this)">chat malam</div>
+<div class="pitem" onclick="k(this)">jam 2 pagi</div>
+</div>
+<div class="msgpz" id="mp">some feelings take time to understand.</div>
+<div class="qt"><p>"bila cinta memiliki wujud, mungkin itu adalah kesediaan untuk tetap tinggal."</p><p style="font-size:.6rem;margin-top:4px">— Habibie & Ainun</p></div>
+</div>
+<div class="slide" id="sl3">
+<div class="night"><div class="rain"></div><div class="train"></div><div id="stars"></div></div>
+<div class="fin">
+<h2 style="font-size:.8rem;letter-spacing:3px;opacity:.6;margin-bottom:30px">if this reaches you</h2>
+<p class="hand" style="margin-bottom:30px">kalau suatu hari bagian kecil ini sampai ke kamu, aku harap kamu tau kalau pernah ada seseorang yang menghargai kehadiranmu, meski dia terlalu lambat menunjukkannya.</p>
+<button class="btn" onclick="end()">stay a little longer</button>
+</div>
+<div class="end" id="end">
+<p class="hand" style="font-size:1.5rem;opacity:.8">dan mungkin, beberapa perasaan memang ditakdirkan datang sedikit lebih terlambat.</p>
+<p style="margin-top:25px;font-size:.7rem;opacity:.5">you were important.</p>
+</div>
+</div>
+</div>
+<div class="nav">
+<button class="arrow" id="prev" onclick="geser(-1)">◂</button>
+<button class="arrow" id="next" onclick="geser(1)">▸</button>
+</div>
+<div class="hov" id="hv">you were important.</div>
+<script>
+// Dust
+for(let i=0;i<20;i++){let d=document.createElement('div');d.className='dust';d.style.left=Math.random()*100+'%';d.style.width=(Math.random()*3+2)+'px';d.style.height=d.style.width;d.style.animationDuration=(Math.random()*12+8)+'s';d.style.animationDelay=Math.random()*12+'s';document.getElementById('dust').appendChild(d);}
+// Slide2 dekor
+let wall=document.getElementById('wall');
+let notes=["aku kira semua itu biasa.","seseorang terasa dekat setelah perubah.","ada rumah yang bukan tempat.","terlalu lama diam, semua terasa jauh."];
+for(let i=0;i<20;i++){
+let n=document.createElement('div');n.className='note';n.innerText=notes[i%4];
+n.style.top=(8+i*7)+'%';n.style.left=(3+(i%4)*25)+'%';n.style.setProperty('--r',(Math.random()*20-10)+'deg');
+n.onclick=function(){alert(notes[i%4])};wall.appendChild(n);
+if(i%3==0){let p=document.createElement('div');p.className='photo';p.style.top=(10+Math.random()*60)+'%';p.style.left=(5+Math.random()*80)+'%';p.style.setProperty('--r',(Math.random()*30-15)+'deg');p.innerText='📷';wall.appendChild(p)}
+if(i%5==0){let l=document.createElement('div');l.className='light';l.style.top=(5+Math.random()*70)+'%';l.style.left=(5+Math.random()*50)+'%';wall.appendChild(l);}}
+// Stars
+let ss=document.getElementById('stars');
+let sts=["ternyata beberapa orang memang sulit diganti.","aku cuma terlalu lama memproses semuanya.","seharusnya aku ngomong lebih cepat.","beberapa perasaan datang setelah semuanya berubah."];
+for(let i=0;i<25;i++){let s=document.createElement('div');s.className='star';s.style.top=Math.random()*70+'%';s.style.left=Math.random()*100+'%';s.onclick=function(){if(sts.length>0){alert(sts.shift())}};ss.appendChild(s);}
+// Navigasi
+let idx=0;let slides=document.querySelectorAll('.slide');function u(){document.getElementById('prev').disabled=idx==0;document.getElementById('next').disabled=idx==2;slides.forEach((s,i)=>{s.classList.toggle('active',i==idx)})}u();
+function geser(d){idx=Math.max(0,Math.min(2,idx+d));u();}
+// Slide1
+function buka(){document.getElementById('bp').style.opacity=.6;document.getElementById('bp').style.filter='blur(3px)';document.getElementById('sh').style.opacity=1;document.getElementById('sh').style.transform='translateY(0)';}
+// Slide2 game
+let c=0;function k(el){if(!el.classList.contains('dn')){el.classList.add('dn');c++;if(c==5)document.getElementById('mp').style.opacity=1;}}
+// Slide3
+function end(){document.getElementById('end').style.opacity=1;document.getElementById('end').style.pointerEvents='auto';}
+// Hidden hover
+document.addEventListener('mousemove',e=>{if(e.clientY>window.innerHeight-50&&e.clientX>window.innerWidth-50)document.getElementById('hv').style.opacity=.5;});
+</script>
+</body>
+</html>
